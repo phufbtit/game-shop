@@ -1,0 +1,223 @@
+/* 1. RESET GENERALE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Il body usa Flexbox per spingere il footer sempre in fondo */
+body {
+    background-color: #0f1115; /* Sfondo scuro pulito */
+    color: #ffffff;
+    min-height: 100vh;         /* Prende tutta l'altezza dello schermo */
+    display: flex;
+    flex-direction: column;    /* Allinea Header, Main e Footer in verticale */
+}
+
+/* 2. HEADER (BARRA IN ALTO) */
+header {
+    background-color: #e60012; /* Rosso ufficiale Nintendo */
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #b3000e; /* Bordo rosso più scuro */
+}
+
+header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-back {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #ffffff;
+    color: #e60012;
+}
+
+/* 3. CONTENITORE PRINCIPALE (MAIN) */
+main {
+    max-width: 95%;
+    margin: 30px auto;
+    width: 100%;
+    flex: 1; /* Si allunga per riempire lo spazio vuoto e bloccare il footer sul fondo */
+}
+
+/* 4. TITOLI DELLE SEZIONI (h2) - ALLINEATI PERFECT */
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    position: relative;
+    padding-left: 15px;
+    margin: 30px 0 15px 10px;
+    height: 64px;          /* Forza il titolo ad occupare lo stesso spazio in altezza */
+    display: flex;
+    align-items: center;   /* Centra verticalmente il testo nel suo spazio */
+    box-sizing: border-box;
+}
+
+/* Linea verticale colorata di fianco ai titoli */
+h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 4px;
+    border-radius: 2px;
+}
+
+h2.nintendowii::before { background-color: #e4e4e4; }       /* Grigio/Bianco stile Wii */
+h2.nintendowiiu::before { background-color: #00aeef; }      /* Azzurro iconico della Wii U */
+h2.nintendoswitch2::before { background-color: #e60012; }   /* Rosso classico Nintendo/Switch */
+
+/* 5. DISPOSIZIONE A RIGA ORIZZONTALE SCORREVOLE */
+section {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Permette lo scorrimento laterale dei giochi */
+    padding: 15px 10px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+}
+
+/* Personalizzazione della barra di scorrimento sotto i giochi */
+section::-webkit-scrollbar {
+    height: 8px;
+}
+section::-webkit-scrollbar-thumb {
+    background: #242933;
+    border-radius: 10px;
+}
+
+/* 6. LE SCHEDE DEI GIOCHI (CARD PERFETTAMENTE UGUALI) */
+.card {
+    background-color: #1a1f29; /* Grigio scuro per le card */
+    min-width: 200px; /* Larghezza fissa per tenere i giochi ordinati di fianco */
+    max-width: 200px;
+    height: 380px;    /* ALTEZZA FISSA: Ora tutte le card saranno grandi identiche! */
+    border-radius: 8px;
+    padding: 12px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+    
+    /* Gestisce lo spazio interno per bloccare il prezzo sul fondo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.card:hover {
+    transform: scale(1.03); /* Leggero zoom quando ci passi sopra */
+    background-color: #242b3a;
+}
+
+/* FIX DELLE IMMAGINI: AREA FISSA, IMMAGINE INTERA E MAI TAGLIATA */
+.card img {
+    width: 100%;
+    height: 220px;       /* Spazio verticale fisso per la foto, uguale per tutti */
+    object-fit: contain; /* L'immagine mantiene le proporzioni e non viene tagliata */
+    background-color: rgba(0, 0, 0, 0.2); /* Sfondo neutro se l'immagine è stretta */
+    border-radius: 4px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    white-space: normal; /* Permette al testo del titolo di andare a capo */
+    color: #e2e8f0;
+    flex-grow: 1;        /* Occupa lo spazio disponibile spingendo giù il prezzo */
+}
+
+.card span {
+    display: block;
+    font-size: 16px;
+    color: #e60012;      /* Colore prezzo rosso Nintendo */
+    font-weight: 700;
+    margin-top: auto;    /* Ancora il prezzo stabilmente in fondo alla card */
+}
+
+/* 7. FOOTER (IDENTICO ALL'HEADER E ATTACCATO AL FONDO) */
+footer {
+    background-color: #e60012; /* Stesso rosso dell'header */
+    padding: 20px 40px;        /* Stessa spaziatura interna */
+    display: flex;
+    justify-content: center;   /* Centra il testo */
+    align-items: center;
+    border-top: 2px solid #b3000e; /* Bordo superiore simmetrico */
+    width: 100%;
+    margin-top: auto;          /* Spinto forzatamente sul fondo dello schermo */
+}
+
+footer p {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    
+
+    header {
+        flex-direction: column; 
+        gap: 15px;             
+        text-align: center;
+        padding: 15px 10px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;        
+    }
+
+    nav a {
+        margin: 0;        
+        font-size: 15px;  
+    }
+
+    .games, .console {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;       
+        padding: 20px 10px; 
+    }
+
+    .card, .macchina {
+        padding: 10px;    
+    }
+
+    .macchina h3 {
+        font-size: 14px;  
+        margin: 8px 0 4px 0;
+    }
+
+    .macchina span {
+        font-size: 14px;  
+    }
+
+    .chi-siamo {
+        margin: 20px 10px; 
+        padding: 20px 15px;
+    }
+    
+    .chi-siamo p {
+        font-size: 14px;   
+        text-align: justify; 
+    }
+}

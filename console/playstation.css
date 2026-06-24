@@ -1,0 +1,210 @@
+/* 1. RESET GENERALE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Il body usa Flexbox per spingere il footer sempre in fondo */
+body {
+    background-color: #0b101b; /* Sfondo scuro pulito */
+    color: #ffffff;
+    min-height: 100vh;         /* Prende tutta l'altezza dello schermo */
+    display: flex;
+    flex-direction: column;    /* Allinea Header, Main e Footer in verticale */
+}
+
+/* 2. HEADER (BARRA IN ALTO) */
+header {
+    background-color: #001c54; /* Blu notte PlayStation */
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #0043c7;
+}
+
+header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-back {
+    color: #00a1ff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #00a1ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #00a1ff;
+    color: #001c54;
+}
+
+/* 3. CONTENITORE PRINCIPALE (MAIN) */
+main {
+    max-width: 95%;
+    margin: 30px auto;
+    width: 100%;
+    flex: 1; /* Si allunga per riempire lo spazio vuoto e bloccare il footer sul fondo */
+}
+
+/* 4. TITOLI DELLE SEZIONI (h2) */
+h2 {
+    font-size: 22px;
+    margin: 30px 0 15px 10px;
+    font-weight: 600;
+    position: relative;
+    padding-left: 15px;
+}
+
+/* Linea verticale colorata di fianco ai titoli */
+h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 4px;
+    border-radius: 2px;
+}
+
+h2.ps3::before { background-color: #ff3333; } /* Rosso per PS3 */
+h2.ps4::before { background-color: #0043c7; } /* Blu per PS4 */
+h2.ps5::before { background-color: #ffffff; } /* Bianco per PS5 */
+
+/* 5. DISPOSIZIONE A RIGA ORIZZONTALE SCORREVOLE */
+section {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Permette lo scorrimento laterale dei giochi */
+    padding: 15px 10px;
+    white-space: nowrap;
+    margin-bottom: 20px;
+}
+
+/* Personalizzazione della barra di scorrimento sotto i giochi */
+section::-webkit-scrollbar {
+    height: 8px;
+}
+section::-webkit-scrollbar-thumb {
+    background: #1c263b;
+    border-radius: 10px;
+}
+
+/* 6. LE SCHEDE DEI GIOCHI (CARD) */
+.card {
+    background-color: #161c2a;
+    min-width: 200px; /* Larghezza fissa per tenere i giochi ordinati di fianco */
+    max-width: 200px;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.03); /* Leggero zoom quando ci passi sopra */
+    background-color: #1e2638;
+}
+
+/* FIX DELLE IMMAGINI: INTERE E MAI TAGLIATE */
+.card img {
+    width: 100%;
+    height: auto;        /* L'altezza si adatta alla foto */
+    object-fit: contain; /* Mostra l'immagine al 100% senza tagliarla */
+    border-radius: 4px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    white-space: normal; /* Permette al testo del titolo di andare a capo */
+    color: #e2e8f0;
+}
+
+.card span {
+    display: block;
+    font-size: 16px;
+    color: #00a1ff; /* Colore prezzo azzurro PlayStation */
+    font-weight: 700;
+}
+
+/* 7. FOOTER (IDENTICO ALL'HEADER E ATTACCATO AL FONDO) */
+footer {
+    background-color: #001c54; /* Stesso blu notte dell'header */
+    padding: 20px 40px;        /* Stessa spaziatura interna */
+    display: flex;
+    justify-content: center;   /* Centra il testo */
+    align-items: center;
+    border-top: 2px solid #0043c7; /* Bordo superiore simmetrico */
+    width: 100%;
+    margin-top: auto;          /* Spinto forzatamente sul fondo dello schermo */
+}
+
+footer p {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    
+
+    header {
+        flex-direction: column; 
+        gap: 15px;             
+        text-align: center;
+        padding: 15px 10px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;        
+    }
+
+    nav a {
+        margin: 0;        
+        font-size: 15px;  
+    }
+
+    .games, .console {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;       
+        padding: 20px 10px; 
+    }
+
+    .card, .macchina {
+        padding: 10px;    
+    }
+
+    .macchina h3 {
+        font-size: 14px;  
+        margin: 8px 0 4px 0;
+    }
+
+    .macchina span {
+        font-size: 14px;  
+    }
+
+    .chi-siamo {
+        margin: 20px 10px; 
+        padding: 20px 15px;
+    }
+    
+    .chi-siamo p {
+        font-size: 14px;   
+        text-align: justify; 
+    }
+}
